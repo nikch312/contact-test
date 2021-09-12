@@ -6,5 +6,21 @@
     "lastName": "Wallace",
     "email": "brendaawall@gmail.com",
     "group": "school"
+  },
+  {
+    "id": 2,
+    "firstName": "Arthur",
+    "middleName": "Junior",
+    "lastName": "Witt",
+    "email": "arthur@gmail.com",
+    "group": "school"
+  },
+  {
+    "id": 3,
+    "firstName": "Cristian",
+    "middleName": "Amadea",
+    "lastName": "Wallace",
+    "email": "cristian@gmail.com",
+    "group": "work"
   }
 ]

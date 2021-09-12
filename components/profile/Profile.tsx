@@ -1,24 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Box, Button, Flex, Text, HStack } from "@chakra-ui/react";
 
 import { Avatar } from "./Avatar";
+import { ContactContext } from "../../context";
+import { IContact, ContextType } from "../../types";
 
-interface ProfileProps {
-  firstName: string;
-  middleName?: string;
-  lastName: string;
-  email: string;
-  group: string;
-}
+export const Profile: React.FC = () => {
+  const { current } = useContext(ContactContext) as ContextType;
 
-export const Profile: React.FC<ProfileProps> = ({
-  firstName,
-  middleName = "",
-  lastName,
-  email,
-  group,
-}) => {
+  if (!current) return <Box>Select a contact.</Box>;
+
+  const { firstName, middleName, lastName, email, group } = current as IContact;
+
   return (
     <Flex flexDir="column" justifyContent="space-between" h="100%">
       <HStack spacing={10} alignItems="flex-start">
