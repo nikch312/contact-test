@@ -12,7 +12,7 @@ interface ProfileProps {
 }
 
 export const Profile: React.FC<ProfileProps> = ({ openModal, setType }) => {
-  const { contacts, current, deleteContact } = useContext(
+  const { contacts, current, deleteContact, setCurrentContact } = useContext(
     ContactContext
   ) as ContextType;
 
@@ -31,7 +31,8 @@ export const Profile: React.FC<ProfileProps> = ({ openModal, setType }) => {
 
   const onDelete = () => {
     if (confirm("Are you sure")) {
-      deleteContact(contact.id);
+      deleteContact(current);
+      setCurrentContact(-1);
     }
   };
 

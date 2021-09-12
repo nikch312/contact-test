@@ -12,7 +12,7 @@ export const ContactItem: React.FC<IContact> = (contact) => {
   return (
     <ListItem
       cursor="pointer"
-      border={current?.id === contact.id ? "1px solid #707070" : "unset"}
+      border={current === contact.id ? "1px solid #707070" : "unset"}
       borderRadius="4px"
       p={1}
       onClick={() => {
