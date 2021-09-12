@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Box, Button, Flex, Input } from "@chakra-ui/react";
 
 import { Modal } from "../components/modal";
 import { Profile } from "../components/profile";
 import { Contact } from "../components/contact";
+import { ContactContext } from "../context";
+import { ContextType } from "../types";
 
 const IndexPage: React.FC = () => {
   const [isModal, setModalVisible] = useState(false);
   const [type, setType] = useState(true);
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
+
+  const { filter, setFilterString } = useContext(ContactContext) as ContextType;
 
   return (
     <>
@@ -22,7 +26,11 @@ const IndexPage: React.FC = () => {
         border="1px solid #707070"
       >
         <Box w="30%">
-          <Input border="1px solid #707070 !important" />
+          <Input
+            border="1px solid #707070 !important"
+            value={filter}
+            onChange={(e) => setFilterString(e.target.value)}
+          />
           <Contact />
           <Button
             w="100%"

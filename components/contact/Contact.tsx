@@ -19,11 +19,16 @@ const sortFunc = (a: IContact, b: IContact): number => {
 };
 
 export const Contact: React.FC = () => {
-  const { contacts } = useContext(ContactContext) as ContextType;
+  const { filter, contacts } = useContext(ContactContext) as ContextType;
   return (
     <Box mt="4" p={2} h="calc(100vh - 208px)" border="1px solid #707070">
       <List spacing={3} h="100%">
         {contacts
+          .filter((c: IContact) =>
+            (c.firstName + c.middleName + c.lastName)
+              .toLowerCase()
+              .includes(filter.toLowerCase())
+          )
           .sort((a: IContact, b: IContact) => sortFunc(a, b))
           .map((contact: IContact) => (
             <ContactItem key={contact.id} {...contact} />

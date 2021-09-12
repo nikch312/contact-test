@@ -8,6 +8,7 @@ export const ContactContext = createContext<ContextType | null>(null);
 const ContactProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [contacts, setContacts] = useState<IContact[]>(initContacts);
   const [current, setCurrent] = useState<number>(-1);
+  const [filter, setFilter] = useState<string>("");
 
   const addContact = (payload: IContact) => {
     const newContact: IContact = {
@@ -33,15 +34,21 @@ const ContactProvider: React.FC<React.ReactNode> = ({ children }) => {
     setCurrent(id);
   };
 
+  const setFilterString = (str: string) => {
+    setFilter(str);
+  };
+
   return (
     <ContactContext.Provider
       value={{
         contacts,
         current,
+        filter,
         addContact,
         updateContact,
         deleteContact,
         setCurrentContact,
+        setFilterString,
       }}
     >
       {children}
