@@ -1,7 +1,17 @@
 export const Text = {
-  color: "#2e2e2e",
   baseStyle: {
-    fontFamily: "ECB",
-    fontWeight: "300",
+    color: "#707070",
   },
-}
+  variants: {
+    avatar: {
+      textTransform: "uppercase",
+      fontSize: "32",
+      fontWeight: "500",
+    },
+    title: {
+      textTransform: "uppercase",
+      fontSize: "24",
+      fontWeight: "700",
+    },
+  },
+};
