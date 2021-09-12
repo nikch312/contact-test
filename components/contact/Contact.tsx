@@ -26,7 +26,7 @@ export const Contact: React.FC = () => {
         {contacts
           .sort((a: IContact, b: IContact) => sortFunc(a, b))
           .map((contact: IContact) => (
-            <ContactItem {...contact} />
+            <ContactItem key={contact.id} {...contact} />
           ))}
       </List>
     </Box>

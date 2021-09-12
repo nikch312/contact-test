@@ -2,7 +2,7 @@ import { IContact } from "./Contact"
 
 export type ContextType = {
   contacts: IContact[];
-  current: IContact | undefined;
+  current: number;
   addContact: (payload: IContact) => void;
   updateContact: (payload: IContact) => void;
   deleteContact: (id: number) => void;

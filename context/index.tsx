@@ -7,7 +7,7 @@ export const ContactContext = createContext<ContextType | null>(null);
 
 const ContactProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [contacts, setContacts] = useState<IContact[]>(initContacts);
-  const [current, setCurrent] = useState<IContact>();
+  const [current, setCurrent] = useState<number>(-1);
 
   const addContact = (payload: IContact) => {
     const newContact: IContact = {
@@ -30,8 +30,7 @@ const ContactProvider: React.FC<React.ReactNode> = ({ children }) => {
   };
 
   const setCurrentContact = (id: number) => {
-    const contact = contacts.find((c: IContact) => c.id === id);
-    setCurrent(contact);
+    setCurrent(id);
   };
 
   return (

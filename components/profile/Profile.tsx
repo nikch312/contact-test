@@ -6,12 +6,34 @@ import { Avatar } from "./Avatar";
 import { ContactContext } from "../../context";
 import { IContact, ContextType } from "../../types";
 
-export const Profile: React.FC = () => {
-  const { current } = useContext(ContactContext) as ContextType;
+interface ProfileProps {
+  openModal: () => void;
+  setType: (type: boolean) => void;
+}
 
-  if (!current) return <Box>Select a contact.</Box>;
+export const Profile: React.FC<ProfileProps> = ({ openModal, setType }) => {
+  const { contacts, current, deleteContact } = useContext(
+    ContactContext
+  ) as ContextType;
 
-  const { firstName, middleName, lastName, email, group } = current as IContact;
+  if (current === -1) return <Box>Select a contact.</Box>;
+
+  const contact: IContact = contacts.find(
+    (c: IContact) => c.id === current
+  ) as IContact;
+
+  const { firstName, middleName, lastName, email, group } = contact;
+
+  const onEdit = () => {
+    setType(false);
+    openModal();
+  };
+
+  const onDelete = () => {
+    if (confirm("Are you sure")) {
+      deleteContact(contact.id);
+    }
+  };
 
   return (
     <Flex flexDir="column" justifyContent="space-between" h="100%">
@@ -42,9 +64,11 @@ export const Profile: React.FC = () => {
       <Flex justifyContent="space-between">
         <Box>
           <Button>Share</Button>
-          <Button ml={4}>Edit...</Button>
+          <Button ml={4} onClick={onEdit}>
+            Edit...
+          </Button>
         </Box>
-        <Button>Delete</Button>
+        <Button onClick={onDelete}>Delete</Button>
       </Flex>
     </Flex>
   );
